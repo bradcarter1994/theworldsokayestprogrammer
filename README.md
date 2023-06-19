@@ -1,1 +1,1 @@
-These are the code samples for my blog, [theworldsokayestprogrammer.com](theworldsokayestprogrammer.com).
+These are the code samples for my blog, [theworldsokayestprogrammer.com](https://theworldsokayestprogrammer.com/).
