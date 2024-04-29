@@ -1,8 +1,3 @@
-
-
-
-
-
 val myList: List[Int] = (1 to 5).toList 
 
 def sumElements(list: List[Int]): Int = list match {
