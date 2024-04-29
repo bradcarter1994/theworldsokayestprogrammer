@@ -1,0 +1,1 @@
+def sumElements(list: List[Int]): Int = ???
