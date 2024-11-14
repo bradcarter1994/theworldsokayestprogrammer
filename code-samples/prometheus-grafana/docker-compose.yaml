@@ -1,0 +1,25 @@
+# To Launch Grafana:
+# - `docker-compose up -d`
+# - Navigate to `http://localhost:3000` in a browser and log in with the default credentials (admin/admin)
+#
+# To stop the containers: `docker-compose down`
+#
+# To stop the containers and discard state: `docker-compose down -v`
+
+networks:
+  monitoring:
+    driver: bridge
+
+services:
+  grafana: 
+    image: grafana/grafana-oss
+    networks:
+      - monitoring
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+volumes:
+  grafana-data:
+    driver: local
