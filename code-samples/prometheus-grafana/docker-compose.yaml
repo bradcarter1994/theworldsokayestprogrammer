@@ -23,6 +23,8 @@ services:
   metrics-generator:
     build:
       context: ./metrics-generator
+    environment:
+      - PYTHONUNBUFFERED=1 # Make python print statements show up in docker logs
     ports:
       - 8000:8000
     networks:
