@@ -12,6 +12,8 @@ networks:
 
 services:
   grafana: 
+    environment:
+      - GF_USERS_DEFAULT_THEME=light
     image: grafana/grafana-oss
     networks:
       - monitoring
