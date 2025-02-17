@@ -29,10 +29,10 @@ RequestsInstrumentor().instrument()
 FlaskInstrumentor().instrument_app(app)
 tracer = trace.get_tracer(__name__)
 
-@app.route("/")
+@app.route("/place-card-hold")
 def create_order():
     print("handling place-card-hold request")
-    response = requests.get("http://customer-service/")
+    response = requests.get("http://customer-service/get-customer")
     return jsonify({"customer_has_funds": True})
 
 if __name__ == "__main__":

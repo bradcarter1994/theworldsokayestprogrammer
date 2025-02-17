@@ -21,7 +21,7 @@ tracer = trace.get_tracer(__name__)
 def generate_metrics():
     while True:
         print("calling order service")
-        response = requests.get("http://order-service/")
+        response = requests.get("http://order-service/create-order")
         print(response)
         time.sleep(5)
 

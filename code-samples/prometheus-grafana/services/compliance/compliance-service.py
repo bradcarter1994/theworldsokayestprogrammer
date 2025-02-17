@@ -29,10 +29,10 @@ RequestsInstrumentor().instrument()
 FlaskInstrumentor().instrument_app(app)
 tracer = trace.get_tracer(__name__)
 
-@app.route("/")
+@app.route("/verify-compliance")
 def create_order():
     print("handling request")
-    response = requests.get("http://customer-service/")
+    response = requests.get("http://customer-service/get-customer")
     return jsonify({"order_created": True})
 
 if __name__ == "__main__":

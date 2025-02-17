@@ -28,7 +28,7 @@ RequestsInstrumentor().instrument()
 FlaskInstrumentor().instrument_app(app)
 tracer = trace.get_tracer(__name__)
 
-@app.route("/")
+@app.route("/check-inventory")
 def create_order():
     print("handling check-inventory request")
     return jsonify({"in_stock": True})

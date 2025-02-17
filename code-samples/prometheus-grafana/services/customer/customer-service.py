@@ -29,7 +29,7 @@ FlaskInstrumentor().instrument_app(app)
 tracer = trace.get_tracer(__name__)
 
 # Define Routes
-@app.route("/")
+@app.route("/get-customer")
 def create_order():
     print("handling get-customer request")
     return jsonify({"first_name": "John", "last_name": "Smith"})
