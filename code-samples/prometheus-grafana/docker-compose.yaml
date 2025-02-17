@@ -100,6 +100,7 @@ services:
       - jaeger
       - inventory-service
       - payments-service
+      - compliance-service
 
   inventory-service:
     build:
@@ -120,6 +121,19 @@ services:
       dockerfile: Dockerfile.payments-service
     environment:
       - FLASK_APP=payments-service.py
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1 # Make python print statements show up in docker logs
+    networks:
+      - monitoring
+    depends_on:
+      - jaeger
+
+  compliance-service:
+    build:
+      context: ./services/compliance
+      dockerfile: Dockerfile.compliance-service
+    environment:
+      - FLASK_APP=compliance-service.py
       - FLASK_ENV=development
       - PYTHONUNBUFFERED=1 # Make python print statements show up in docker logs
     networks:
