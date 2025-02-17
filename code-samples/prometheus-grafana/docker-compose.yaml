@@ -127,6 +127,7 @@ services:
       - monitoring
     depends_on:
       - jaeger
+      - customer-service
 
   compliance-service:
     build:
@@ -134,6 +135,20 @@ services:
       dockerfile: Dockerfile.compliance-service
     environment:
       - FLASK_APP=compliance-service.py
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1 # Make python print statements show up in docker logs
+    networks:
+      - monitoring
+    depends_on:
+      - jaeger
+      - customer-service
+
+  customer-service:
+    build:
+      context: ./services/customer
+      dockerfile: Dockerfile.customer-service
+    environment:
+      - FLASK_APP=customer-service.py
       - FLASK_ENV=development
       - PYTHONUNBUFFERED=1 # Make python print statements show up in docker logs
     networks:
