@@ -6,7 +6,7 @@ import time
 def generate_metrics():
     while True:
         print("calling order service")
-        response = requests.get("http://order-service:5000/")
+        response = requests.get("http://order-service/")
         print(response)
         time.sleep(5)
 

@@ -90,8 +90,6 @@ services:
     build:
       context: ./services/order
       dockerfile: Dockerfile.order-service
-    ports:
-      - "5000:5000"
     environment:
       - FLASK_APP=order-service.py
       - FLASK_ENV=development
