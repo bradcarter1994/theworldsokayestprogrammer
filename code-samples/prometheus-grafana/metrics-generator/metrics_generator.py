@@ -1,6 +1,13 @@
 from prometheus_client import start_http_server, Counter, Gauge, Histogram, Summary
 import random
+import signal
+import sys
 import time
+
+def sigterm_handler(signum, frame):
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, sigterm_handler)
 
 def random_walk(min_val, max_val, max_step):
     current = min_val + max_val / 2
