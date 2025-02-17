@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-# import requests
+import requests
 import signal
 import sys
 # from tracing import init_tracer
@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route("/")
 def create_order():
     print("handling request")
-    # response = requests.get("http://localhost/")
+    response = requests.get("http://customer-service/")
     return jsonify({"order_created": True})
 
 if __name__ == "__main__":
