@@ -98,6 +98,20 @@ services:
       - monitoring
     depends_on:
       - jaeger
+      - inventory-service
+
+  inventory-service:
+    build:
+      context: ./services/inventory
+      dockerfile: Dockerfile.inventory-service
+    environment:
+      - FLASK_APP=inventory-service.py
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1 # Make python print statements show up in docker logs
+    networks:
+      - monitoring
+    depends_on:
+      - jaeger
 
 volumes:
   grafana-data:
