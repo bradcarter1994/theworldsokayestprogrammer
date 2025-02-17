@@ -22,6 +22,7 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+
   metrics-generator:
     build:
       context: ./metrics-generator
@@ -31,6 +32,7 @@ services:
       - 8000:8000
     networks:
       - monitoring
+
   prometheus:
     image: prom/prometheus
     ports:
@@ -44,6 +46,7 @@ services:
       - '--storage.tsdb.path=/prometheus'
     networks:
       - monitoring
+
   alertmanager:
     image: prom/alertmanager
     ports:
@@ -52,6 +55,23 @@ services:
       - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
+    networks:
+      - monitoring
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    environment:
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"  # UI port
+      - "14250:14250"
+      - "14268:14268"
+      - "14269:14269"  # Admin port
+      - "9411:9411"
     networks:
       - monitoring
 
